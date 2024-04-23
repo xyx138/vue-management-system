@@ -1,6 +1,6 @@
 # 通用后台管理系统
 
-[在线预览](https://xyx138.github.io/web-study/)
+[在线预览](https://xyx138.github.io/vue-management-system/)
 
 ### 技术栈
 vue全家桶，element-ui
