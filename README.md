@@ -21,6 +21,10 @@ npm run build
 
 ~~~
 
+### 账户
+
+* 名称： admin
+* 密码： admin
 
 
 
