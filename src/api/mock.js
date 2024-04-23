@@ -1,4 +1,4 @@
-import Mock, { mock } from "mockjs";
+import Mock from "mockjs";
 
 import homeApi from './mockServerData/home'
 import user from './mockServerData/user'

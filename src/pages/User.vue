@@ -45,10 +45,10 @@
 
       <el-form :model="searchForm" :inline="true" style="margin-top: 15px">
         <el-form-item>
-          <el-input v-model="searchForm.name" placeholder="请输入要搜索的姓名"></el-input>
+          <el-input v-model="searchForm.name" :placeholder="placeholder" ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="getUserInfo">搜索</el-button>
+          <el-button type="primary" @click="handleSearch">{{ buttonText }}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -95,6 +95,7 @@
 <script>
 import { getUser, addUser, delUser, editUser } from '../api'
 import FileSaver from 'file-saver';
+
 import XLSX from "xlsx"
 
 export default {
@@ -248,19 +249,34 @@ export default {
       this.getUserInfo()
     },
 
+
+
     // 封装获取用户数据的函数
     getUserInfo() {
       getUser({ params: {...this.searchForm  ,...this.pageData} }).then(({ data }) => {
-        console.log("数据重新渲染")
-        this.tableData = data.list,
-          this.total = data.list ? data.count : 0
+        this.tableData = data.list
+        this.total = data.list ? data.count : 0
+        if(this.total === 0){
+          this.$message.error('查找失败，没有此人');
+        }
+        this.searchForm.name = ""
       })
+    },
+
+    // 搜索
+    handleSearch(){
+      this.getUserInfo();
+      
     },
 
     // 增加用户
     add() {
       addUser(this.form).then(
-        this.getUserInfo()
+        this.getUserInfo(),
+        this.$message({
+          type: 'success',
+          message: '添加成功!'
+        })
       )
     },
 
@@ -279,9 +295,26 @@ export default {
     }
   },
 
+  computed:{
+    placeholder(){
+      return "请输入搜索内容";
+    },
+
+    buttonText(){
+      if(this.searchForm.name === "" && this.total === 0){
+        return "刷新";
+      }
+      else{
+        return "搜索";
+      }
+    }
+  },
+
+
   mounted() {
     this.getUserInfo()
-  }
+  },
+
 };
 </script>
 

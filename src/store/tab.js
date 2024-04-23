@@ -13,14 +13,13 @@ export default{
     },
     actions:{
         selectMenu($store, item){
+            console.log("actions部分被调用")
             if(item.name != 'home'){
                 const index = $store.state.tabsList.findIndex(val => val === item)
                 if(index == -1){
                     $store.commit('pushTab', item)
                 }
             }
-
-            
         }
     },
 

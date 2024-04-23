@@ -30,10 +30,12 @@ export default {
     CommonAside,
     Header,
     CommonTag,
-    CommonTag
   },
 
+
   created () {
+    // 实现刷新页面时保留数据
+
     // 在页面加载时读取sessionStorage里的状态信息
     if (sessionStorage.getItem('store')) {
       this.$store.replaceState(
@@ -44,7 +46,17 @@ export default {
         )
       )
     }
- 
+    
+    this.$store.state.tab.tabsList = [
+          {
+              path: '/',
+              name: 'home',
+              label: '首页',
+              icon: 's-home',
+              url: 'Home/Home'
+          },
+    ]  // 面包屑在刷新页面时会出bug，不知道怎么改就重置面包屑了
+
     // 在页面刷新时将vuex里的信息保存到sessionStorage里
     // beforeunload事件在页面刷新时先触发
     window.addEventListener('beforeunload', () => {

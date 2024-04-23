@@ -35,7 +35,7 @@ export default {
     },
 
     mounted(){
-        console.log("打印tags", this.$route)
+        // console.log("打印tags", this.$route)
     }
 }
 </script>
@@ -47,8 +47,9 @@ export default {
     justify-content: flex-start;
     align-items: center;
     .el-tag{
-        margin: 5px 5px;
-        
+        // 修改光标形状
+        cursor: pointer; 
+        margin: 5px 5px;    
     }
 }
 

@@ -127,6 +127,9 @@ export default {
           u.age = age
           u.birth = birth
           u.sex = sex_num
+
+          // console.log(u.name)
+
           return true
         }
       })

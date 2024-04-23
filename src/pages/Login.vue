@@ -47,16 +47,15 @@ export default {
         if(valid){
           getMenu(this.loginInfo).then(({data}) =>{
             if(data.code == 20000){
-              console.log("打印data.data" ,data.data)
-
+            
               Cookie.set('token', data.data.token)
-              // console.log('菜单内容', data.data.menu)
              
               var userinfo = {}
               userinfo.name = data.data.name
               userinfo.img = data.data.img
               userinfo.access = data.data.access
              
+              // 登录页面跳转前保存用户信息到state 
               this.$store.commit('updatedUserInfo', userinfo)
               this.$store.commit('updateMenu', data.data.menu)
               

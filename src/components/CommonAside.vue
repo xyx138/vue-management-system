@@ -25,8 +25,6 @@
 </template>
 
 <script>
-import Cookie from 'js-cookie'
-
 
 export default {
   data() {
@@ -35,22 +33,11 @@ export default {
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      // console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      // console.log(key, keyPath);
-    },
     clickMenu(item){
       // 防止重复push同一个路径报错
       if(this.$route.path == item.path || (this.$route.path == '/home' && item.path == '/')) return;
-      
-      console.log('点击选项卡')
-
       this.$router.push(item.path)
-
       this.$store.dispatch('selectMenu', item)
-
     },
   
   },
